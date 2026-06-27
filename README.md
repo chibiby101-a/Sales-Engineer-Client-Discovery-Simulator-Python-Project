@@ -1,40 +1,82 @@
-# Sales-Engineer-Client-Discovery-Simulator-Python-Project
-A Python CLI application that simulates a Sales Engineer's client discovery process by estimating customer budgets and recommending IT security solutions.
+from random import randint
 
- 💼 Sales Engineer Client Discovery Simulator
+EASY_LEVEL_TURNS = 10
+HARD_LEVEL_TURNS = 5
 
-A Python command-line application that simulates a Sales Engineer's client discovery process by gathering customer information, estimating the client's budget, and recommending an appropriate cybersecurity solution.
 
-## 🚀 Features
+def recommend_solution(budget):
+    if budget <= 10000:
+        return "Fortinet Firewall - Best for small businesses"
+    elif budget <= 50000:
+        return "Cisco Meraki - Best for medium businesses with cloud management"
+    else:
+        return "Palo Alto Networks - Best for enterprise-grade security"
 
-- Collect client information
-- Identify customer pain points
-- Estimate the client's budget
-- Recommend a cybersecurity solution
-- Practice decision-making using Python
 
-## 🛠️ Technologies
+def check_answer(user_guess, actual_budget, turns):
+    """Checks the user's budget estimate and returns turns remaining."""
+    if user_guess > actual_budget:
+        print("Your estimate is too high. The client may have budget limitations.")
+        return turns - 1
+    elif user_guess < actual_budget:
+        print("Your estimate is too low. The client may need a stronger solution.")
+        return turns - 1
+    else:
+        print(f"\nCorrect! The client's budget is ${actual_budget}.")
+        print(f"Recommended Solution: {recommend_solution(actual_budget)}")
+        return turns
 
-- Python 3
-- Functions
-- Loops
-- Conditional Statements
-- Random Module
 
-## 📚 What I Learned
+def set_difficulty():
+    level = input("Choose client type. Type 'small' or 'enterprise': ").lower()
 
-This project helped me practice Python fundamentals while applying them to a real-world Sales Engineering scenario. It demonstrates how technical logic can support customer discovery and solution recommendation.
+    if level == "small":
+        return EASY_LEVEL_TURNS
+    else:
+        return HARD_LEVEL_TURNS
 
-## 🔮 Future Improvements
 
-- Add more solution recommendations
-- Generate proposal summaries
-- Include ROI calculations
-- Build a GUI version
+def game():
+    print("💼 Sales Engineer Client Discovery Simulator")
+    print("Your goal is to estimate the client's IT budget.")
+    print("Then recommend the right cybersecurity solution.")
 
-## 👨‍💻 Author
+    company_name = input("\nClient company name: ")
+    pain_point = input("Client pain point: ")
+    company_size = input("Company size (Small/Medium/Large): ")
 
-**Charles Matthew D. Manaloto**  
-Licensed Electronics Engineer (ECE) | Aspiring Sales Engineer / Solutions Engineer
+    actual_budget = randint(1, 100) * 1000
+    turns = set_difficulty()
+    guess = 0
 
-⭐ Feel free to explore the project or share your feedback!
+    print(f"\nClient Profile:")
+    print(f"Company: {company_name}")
+    print(f"Pain Point: {pain_point}")
+    print(f"Company Size: {company_size}")
+
+    while guess != actual_budget:
+        print(f"\nYou have {turns} discovery questions remaining.")
+
+        guess = int(input("Estimate the client's budget: $"))
+
+        turns = check_answer(guess, actual_budget, turns)
+
+        if guess == actual_budget:
+            print("\nSales Engineer Summary:")
+            print(f"{company_name} is a {company_size} company.")
+            print(f"Their main issue is: {pain_point}")
+            print(f"Proposed solution: {recommend_solution(actual_budget)}")
+            print("Next step: Schedule a technical demo with the client.")
+            break
+
+        if turns == 0:
+            print("\nYou ran out of discovery attempts.")
+            print(f"The actual client budget was ${actual_budget}.")
+            print(f"Suggested Solution: {recommend_solution(actual_budget)}")
+            print("Tip: Ask better questions about company size, pain points, and budget.")
+            return
+
+        print("Continue discovery and refine your estimate.")
+
+
+game()
