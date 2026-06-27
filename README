@@ -1,0 +1,35 @@
+# 💼 Sales Engineer Client Discovery Simulator
+
+A Python command-line application that simulates a Sales Engineer's client discovery process by gathering customer information, estimating the client's budget, and recommending an appropriate cybersecurity solution.
+
+## 🚀 Features
+
+- Collect client information
+- Identify customer pain points
+- Estimate the client's budget
+- Recommend a cybersecurity solution
+- Practice decision-making using Python
+
+## 🛠️ Technologies
+
+- Python 3
+- Functions
+- Loops
+- Conditional Statements
+- Random Module
+
+## 📚 What I Learned
+
+This project helped me practice Python fundamentals while applying them to a real-world Sales Engineering scenario. It demonstrates how technical logic can support customer discovery and solution recommendation.
+
+## 🔮 Future Improvements
+
+- Add more solution recommendations
+- Generate proposal summaries
+- Include ROI calculations
+- Build a GUI version
+
+## 👨‍💻 Author
+
+**Charles Matthew D. Manaloto**  
+Licensed Electronics Engineer (ECE) | Aspiring Sales Engineer / Solutions Engineer
